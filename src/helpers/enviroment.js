@@ -9,7 +9,7 @@ switch (window.location.hostname) {
     // this is the deployed react application
     case 'monsterquestered.herokuapp.com':
         // this is the full url of your deployed API
-        APIURL = 'https://monster-server-mf.herokuapp.com'
+        APIURL = 'https://cors-anywhere.herokuapp.com/https://monster-server-mf.herokuapp.com'
 }
 
 
