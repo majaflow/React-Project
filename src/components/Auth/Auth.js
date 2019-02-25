@@ -10,6 +10,7 @@ class Auth extends Component {
       userName: '',
       email: '',
       password: ''
+  
     }
   }
 
@@ -25,6 +26,7 @@ class Auth extends Component {
       userName: '',
       email: '',
       password: '',
+      data: 1
     })
   }
 
@@ -34,7 +36,7 @@ class Auth extends Component {
     let url = this.state.login ? `${this.props.baseUrl}/auth/signin` : `${this.props.baseUrl}/auth/signup`;
     fetch(url,{
       method: 'POST',
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(this.state.userName,this.state.email,this.state.password,this.state.data),
       headers: {
         'Content-Type': 'application/json'
       }

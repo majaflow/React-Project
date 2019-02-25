@@ -8,7 +8,7 @@ export default class Enemy extends Component {
 
             name: this.props.monster.nameOfMonster,
             info: this.props.monster.info,
-            
+            affiliation: this.props.monster.affiliation,
             hp: undefined,
             ap: undefined,
             item: undefined,
