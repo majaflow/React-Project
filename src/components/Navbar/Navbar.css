@@ -1,0 +1,13 @@
+nav{
+  margin: 0;
+  background-color:rgb(73, 213, 248);
+  color: orange;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+nav img{
+  height: 100%;
+}
