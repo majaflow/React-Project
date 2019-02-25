@@ -49,16 +49,17 @@ export default class infoHandler extends Component {
          }).then(res=>res.json())
          .then(json=>{
              let monsterPool = []
+             let x = Math.floor(Math.random()*monsterPool.length)
             for (var i = 0; i < json.length ; i ++) {
 
-                if (json[i].tier = this.props.difficulty) {
+                if (json[i].tier === this.props.difficulty) {
                 monsterPool.push(json[i])
                 }
                     else console.log('error in infofetch')
                     
                 }
                 this.setState({
-                    monster: monsterPool
+                    monster: monsterPool[x]
                 })
                 console.log(this.state.monster)
                 

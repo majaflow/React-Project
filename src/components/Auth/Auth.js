@@ -29,6 +29,7 @@ class Auth extends Component {
   }
 
   handleSubmit = (event) => {
+    console.log(this.state)
     event.preventDefault();
     let url = this.state.login ? `${this.props.baseUrl}/auth/signin` : `${this.props.baseUrl}/auth/signup`;
     fetch(url,{

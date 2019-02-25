@@ -6,7 +6,9 @@ export default class Enemy extends Component {
         super(props);
         this.state= {
 
-            RAWmonster: {},
+            name: this.props.monster.nameOfMonster,
+            info: this.props.monster.info,
+            
             hp: undefined,
             ap: undefined,
             item: undefined,
