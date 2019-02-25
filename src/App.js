@@ -32,11 +32,11 @@ class App extends Component {
       userData: _userData + 1
     })
   }
-  storeSessionToken = (token) => {
+  storeSessionToken = (token,data) => {
     localStorage.setItem('token', token)
     this.setState({
       sessionToken: token,
-      userData: 1
+      userData: data
   })
   }
   // should save user data then discards token on logout
