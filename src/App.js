@@ -10,7 +10,8 @@ class App extends Component {
     this.state = {
       sessionToken: undefined,
        //Only considered booleanesque on clientside
-      userData: null
+      userData: null,
+      
     }
   }
 
@@ -22,8 +23,8 @@ class App extends Component {
   viewConductor = () => {
     const url = `${APIURL}`
     return this.state.sessionToken !== undefined ? <Splash gameProgress={this.progress} 
-    difficulty={this.state.userData} baseUrl={url}/> 
-    : <Auth baseUrl={url} tokenHandler={this.storeSessionToken}/>;
+    difficulty={this.state.userData} baseUrl={url} token={this.state.sessionToken}/> 
+    : <Auth baseUrl={url} tokenHandler={this.storeSessionToken} data={this.userData}/>;
   }
   
   progress= () => {
@@ -36,7 +37,7 @@ class App extends Component {
     localStorage.setItem('token', token)
     this.setState({
       sessionToken: token,
-      userData: data
+      userData: data ? data : 1
   })
   }
   // should save user data then discards token on logout
@@ -58,7 +59,7 @@ class App extends Component {
     console.log(this.state.sessionToken);
     return (
       <React.Fragment>
-        <Navbar logout={this.removeSessionToken}/>
+        <Navbar baseUrl={this.url}logout={this.removeSessionToken}/>
         
         {this.viewConductor()}
       </React.Fragment>

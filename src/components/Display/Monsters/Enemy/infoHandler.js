@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Enemy from './Enemy'
+import Create from '../Enemy/CreateMonster'
 //whole thing needs testing
 export default class infoHandler extends Component {
     constructor(props){
@@ -22,21 +23,7 @@ export default class infoHandler extends Component {
         (level<= 3) ? pickEnemy(this.state.part3) :
         (level> 3) ? console.log('win') : console.log('nothing son')
     }
-    //calculates stats for a given monster
-    // giveStats = (tier,isBoss) => {
-    //     (isBoss== true) ? hp== Math.floor((Math.random()*(tier+tier))+tier)*tier :
-    //     hp== Math.floor((Math.random()*(tier+tier))+tier);
- 
-    //     let ap= Math.floor((Math.random()*(tier+tier))+tier);
-    //     (hp/3 >ap) ? ap == hp/3 :
-    //     (ap/2 >hp) ? hp == ap/2 : ap==ap, hp==hp;
-    //      }
-    // //calculates aggression of a given monster (subject to change)
-    //  isAggro = (affiliation,isBoss,reputation) => {
-    //      (isBoss===true) ? aggro === true :
-    //      (affiliation == reputation) ? aggro === true :
-    //      aggro === false
-    //  }
+
         
 
      //filter jsonified results from fetch by seperating monsters by tier ('GET')
@@ -44,53 +31,48 @@ export default class infoHandler extends Component {
          fetch(`${this.props.baseUrl}/monster/`,{
            method: 'GET',
            headers: {
-             'Content-Type': 'application/json'
+             'Content-Type': 'application/json',
+             'authorization': this.props.token
            }
          }).then(res=>res.json())
          .then(json=>{
              let monsterPool = []
-             let x = Math.floor(Math.random()*monsterPool.length)
-            for (var i = 0; i < json.length ; i ++) {
-
-                if (json[i].tier === this.props.difficulty) {
-                monsterPool.push(json[i])
-                }
-                    else console.log('error in infofetch')
+             let otherMonsters= []
+             for (var i = 0; i < json.length ; i ++) {
+                 
+                 if (json[i].tier <= this.props.difficulty) {
+                     monsterPool.push(json[i])
+                    }
+                    else otherMonsters.push(json[i])
                     
                 }
+                console.log(monsterPool)
                 this.setState({
-                    monster: monsterPool[x]
+                    monster: monsterPool[0]
                 })
                 console.log(this.state.monster)
-                
            })
-
-
-    //     .then(json=>enemy(json))
-}       
-
-    /*     .then(json=>json.forEach(filterResults()))
-         const filterResults = (el) => {
-             console.log(el)
-             let monster = el
-             let tier = monster.tier
-             console.log(tier)
-             tier > 2 ? this.setState({part3: monster}):
-             tier === 2 ? this.setState({part2: monster}):
-             tier < 1 ? this.setState({part1:monster}) : console.log(monster)
-
-             }  
-
-            }
-        }
-*/
-    
-    //the fetch for data from my server and jsonify them then filtering them(above)
-    //my render of info should have conditional for actions or actions should have conditional
-
+        }       
+    nextMonster = () => {
+        let x = Math.floor(Math.random()*this.monsterPool.length)
+        this.setState({monster: this.monsterPool[x+1]})
+    }
+createMonster = (event) => {
+    event.preventDefault()
+    return (<Create baseUrl={this.props.baseUrl}progress={this.props.progress} token={this.props.token}/>)
+}
+//updateMonster= (event)=> {
+ //   event.preventDefault()
+//    return(<Update baseUrl={this.props.baseUrl}progress={this.props.progress} token={this.props.token}/>)
+//}
 render(){
+    console.log(this.state.monster)
+   // <button onClick={this.updateMonster}>Update Character</button>
     return (
-        <Enemy monster={this.state.monster}/>
+        <div>
+       <Enemy monster={this.state.monster}next={this.nextMonster}/>
+       <Create baseUrl={this.props.baseUrl}progress={this.props.progress} token={this.props.token}/>
+        </div>
     )
 }
 }

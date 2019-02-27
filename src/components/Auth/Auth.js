@@ -29,7 +29,7 @@ class Auth extends Component {
       data: 1
     })
   }
-
+ 
   handleSubmit = (event) => {
     console.log(this.state)
     event.preventDefault();
@@ -43,8 +43,9 @@ class Auth extends Component {
     })
       .then(res => res.json())
       .then(json => this.props.tokenHandler(json.sessionToken,json.data))
+      
   }
-
+ 
   render(){
     let title = this.state.login ? 'Login' : 'Signup';
     let signupFields = this.state.login
