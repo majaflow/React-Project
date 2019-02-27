@@ -5,10 +5,10 @@ export default class Create extends Component {
     constructor(props) {
      super(props);
      this.state= {
-        nameOfMonster: 'Lay-Z',
-        info: 'lazy',
+        nameOfMonster: '',
+        info: '',
         tier: 1,
-        imgUrl:'lazy',
+        imgUrl:'',
         affiliation: null,
         recruitTrigger: null,
         isBoss: false,
