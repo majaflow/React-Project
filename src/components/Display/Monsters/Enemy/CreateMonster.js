@@ -17,8 +17,8 @@ export default class Create extends Component {
      }
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.monster)
         if (this.props.monster !== nextProps.monster) {
+            console.log('nextprops.monster returns:',nextProps.monster)
             this.setState({
                 nameOfMonster: nextProps.monster.nameOfMonster,
                 info: nextProps.monster.info,

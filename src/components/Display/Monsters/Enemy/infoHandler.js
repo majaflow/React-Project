@@ -38,7 +38,7 @@ export default class infoHandler extends Component {
                     else otherMonsters.push(json[i])
 
                 }
-                console.log(monsterPool)
+                console.log('moster array returns:',monsterPool)
                 const x = Math.floor(Math.random() * monsterPool.length)
                 this.setState({
                     monster: monsterPool[x],
@@ -68,7 +68,7 @@ export default class infoHandler extends Component {
 
 
     render() {
-        console.log(this.state.monster)
+        console.log('This.state.monster retruns:',this.state.monster)
 
         return (
             <div>

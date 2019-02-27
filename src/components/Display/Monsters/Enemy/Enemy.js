@@ -36,7 +36,7 @@ export default class Enemy extends Component {
         }
     }    
         render(){
-            console.log(this.state)
+            console.log('this.state returns:', this.state)
            return(
                
                 <div className='Frame'>

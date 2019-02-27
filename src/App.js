@@ -56,7 +56,7 @@ class App extends Component {
   
   
   render() {
-    console.log(this.state.sessionToken);
+    console.log('token:',this.state.sessionToken);
     return (
       <React.Fragment>
         <Navbar baseUrl={this.url}logout={this.removeSessionToken}/>
