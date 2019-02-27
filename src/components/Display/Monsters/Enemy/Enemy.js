@@ -43,8 +43,6 @@ export default class Enemy extends Component {
                 <img src={this.state.img} alt='Disgraceful Display'/>
                 <h1>{this.state.name}</h1>
                 <p>Info:{this.state.info}</p>
-                
-                <button className="Next" onClick={this.props.next}>View Next Character</button>
                 </div>
                 
             )
