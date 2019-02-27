@@ -27,7 +27,7 @@ export default class infoHandler extends Component {
             }
         }).then(res => res.json())
             .then(json => {
-
+                console.log(json)
                 let monsterPool = []
                 let otherMonsters = []
                 for (var i = 0; i < json.length; i++) {
