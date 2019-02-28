@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
 import Create from '../Enemy/CreateMonster'
-//whole thing needs testing
-import x from './Randomvar'
+
 export default class infoHandler extends Component {
     constructor(props) {
         super(props);

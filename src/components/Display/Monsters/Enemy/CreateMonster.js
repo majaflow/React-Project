@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Enemy from './Enemy'
 import Deleted from './Delete'
+import './main.css'
 export default class Create extends Component {
     constructor(props) {
      super(props);
@@ -103,7 +104,7 @@ export default class Create extends Component {
         return(
             <React.Fragment>
             {this.viewConductor()}
-            <form className="cardLike" onSubmit={this.submitMonster}>
+            <form className="cardo" onSubmit={this.submitMonster}>
             <h1>Create Character</h1>
             <label htmlFor="nameOfMonster">Character Name:</label><br/>
             <input onChange={this.handleChange} value={this.state.nameOfMonster} type="text" id="nameOfMonster" /><br/>

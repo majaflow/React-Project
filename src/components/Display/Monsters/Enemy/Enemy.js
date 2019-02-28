@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-
-
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle } from 'reactstrap';
+import './main.css'
 export default class Enemy extends Component {
     constructor(props){
         super(props);
@@ -39,10 +40,16 @@ export default class Enemy extends Component {
             console.log('this.state returns:', this.state)
            return(
                
-                <div className='Frame'>
-                <img src={this.state.img} alt='Disgraceful Display'/>
-                <h1>{this.state.name}</h1>
-                <p>Info:{this.state.info}</p>
+                <div >
+
+                <Card className='Frame'> 
+        <CardImg top width="100%" src={this.state.img} alt="Disgraceful Display" />
+        <CardBody>
+          <CardTitle>{this.state.name}</CardTitle>
+          <CardSubtitle>Info:</CardSubtitle>
+          <CardText>{this.state.info}.</CardText>
+        </CardBody>
+      </Card>
                 </div>
                 
             )

@@ -1,0 +1,24 @@
+.Frame {
+    border-style: solid;
+    border-width: .5em;
+    border-radius: 2em;
+    border-color: peru;
+    background-color: lightcyan;
+    width: 15em;
+    height: 20em;
+    transform-origin: 10em, 20em;
+    float: center;
+    left: 40%;
+    right:50%;
+    top:5%;
+    position: absolute
+}
+.cardo {
+    text-align: center;
+    top:50%;
+    left: 40%;
+    width: 20em;
+    right: 50%;
+    position: absolute;
+    transform-origin: 10em, 20em
+}
