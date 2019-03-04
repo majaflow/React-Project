@@ -43,11 +43,11 @@ export default class Enemy extends Component {
                 <div >
 
                 <Card className='Frame'> 
-        <CardImg top width="100%" src={this.state.img} alt="Disgraceful Display" />
-        <CardBody>
-          <CardTitle>{this.state.name}</CardTitle>
+        <CardImg className="img"top width="10vh" src={this.state.img} alt="Disgraceful Display" />
+        <CardBody className="cardBody">
+          <CardTitle className='Title'>{this.state.name}</CardTitle>
           <CardSubtitle>Info:</CardSubtitle>
-          <CardText>{this.state.info}.</CardText>
+          <CardText>{this.state.info}</CardText>
         </CardBody>
       </Card>
                 </div>

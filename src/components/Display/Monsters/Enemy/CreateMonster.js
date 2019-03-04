@@ -50,6 +50,7 @@ export default class Create extends Component {
             })
             .catch(err => console.log(err.message))
             this.setState({complete: 3})
+            this.props.create()
         }
         handleChange = (event) => {
             console.log(this.state)
@@ -68,7 +69,7 @@ export default class Create extends Component {
               .then(json=> console.log(json))
               .catch(err => err.message)
               this.setState({complete:undefined})
-
+              this.props.delete()
         }
         edit = (event) => {
             event.preventDefault()
@@ -105,7 +106,7 @@ export default class Create extends Component {
             <React.Fragment>
             {this.viewConductor()}
             <form className="cardo" onSubmit={this.submitMonster}>
-            <h1>Create Character</h1>
+            <h1>Character</h1>
             <label htmlFor="nameOfMonster">Character Name:</label><br/>
             <input onChange={this.handleChange} value={this.state.nameOfMonster} type="text" id="nameOfMonster" /><br/>
             <label htmlFor="imgUrl">Charater ImgUrl</label><br/>

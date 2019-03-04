@@ -28,19 +28,34 @@ export default class infoHandler extends Component {
             .then(json => {
                 console.log(json)
                 let monsterPool = json
-                
-                console.log('moster array returns:',monsterPool)
-                const x = Math.floor(Math.random() * monsterPool.length)
+ 
                 this.setState({
-                    monster: monsterPool[x],
+                    monster: monsterPool[0],
                     monsters: monsterPool,
-                    x: x
+                    x:0
                 })
-                console.log(this.state.monster.id)
-
             })
     }
+    createdMonster = () => {
+    fetch(`${this.props.baseUrl}/monster/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': this.props.token
+        }
+    }).then(res => res.json())
+        .then(json => {
+            console.log(json)
+            let monsterPool = json
+            let x = monsterPool.length-1
+            this.setState({
+                monster: monsterPool[x],
+                monsters: monsterPool
+            })
+        })
+}
     mahMonster = () => {
+        
         fetch(`${this.props.baseUrl}/monster/${this.state.monster.id}`, {
             method: 'GET',
             headers: {
@@ -56,15 +71,25 @@ export default class infoHandler extends Component {
                 })
             })
     }
-
+    deletedMonster = () => {
+        let monsterPool = this.state.monsters
+     monsterPool.shift()
+        
+   
+        this.setState({
+            monster: monsterPool[0],
+            monsters: monsterPool
+        })
+    }
+ 
 
     render() {
         console.log('This.state.monster retruns:',this.state.monster)
 
         return (
             <div>
-                <Create baseUrl={this.props.baseUrl} progress={this.props.progress} monster={this.state.monster}
-                    token={this.props.token} monsters={this.state.monsters} reUp={this.mahMonster} />
+                <Create baseUrl={this.props.baseUrl} create={this.createdMonster} monster={this.state.monster}
+                    token={this.props.token} monsters={this.state.monsters} delete={this.deletedMonster} reUp={this.mahMonster} />
             </div>
         )
     }
