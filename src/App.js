@@ -11,7 +11,7 @@ class App extends Component {
       sessionToken: undefined,
        //Only considered booleanesque on clientside
       userData: null,
-      
+      monsters: []
     }
   }
 
@@ -22,17 +22,33 @@ class App extends Component {
 // this view function passes props of the state and baseUrl variable
   viewConductor = () => {
     const url = `${APIURL}`
-    return this.state.sessionToken !== undefined ? <Splash gameProgress={this.progress} 
-    difficulty={this.state.userData} baseUrl={url} token={this.state.sessionToken}/> 
+    return this.state.sessionToken !== undefined ? <Splash  baseUrl={url} token={this.state.sessionToken} createdMonster={this.createdMonster}monsters={this.state.monsters}/> 
     : <Auth baseUrl={url} tokenHandler={this.storeSessionToken} data={this.userData}/>;
   }
-  
-  progress= () => {
-    let _userData = this.state.userData;
-    this.setState({
-      userData: _userData + 1
-    })
-  }
+  createdMonster = () => {
+    fetch(`${APIURL}/monster/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': this.state.token
+        }
+    }).then(res => res.json())
+        .then(json => {
+            console.log(json)
+            let monsterPool = json.reverse();
+            this.setState({
+             
+                monsters: monsterPool
+            })
+            
+        })
+}
+  // progress= () => {
+  //   let _userData = this.state.userData;
+  //   this.setState({
+  //     userData: _userData + 1
+  //   })
+  // }
   storeSessionToken = (token,data) => {
     localStorage.setItem('token', token)
     this.setState({

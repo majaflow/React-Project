@@ -10,7 +10,7 @@ class Auth extends Component {
       userName: '',
       email: '',
       password: '',
-      data: null
+      data: 1
     }
   }
 

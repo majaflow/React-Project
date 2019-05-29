@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Enemy from './Enemy'
-import Deleted from './Delete'
+
+
 import './main.css'
 export default class Create extends Component {
     constructor(props) {
@@ -47,64 +47,18 @@ export default class Create extends Component {
          .then(res=>res.json())
          .then(json=>{
              console.log(json)
-            })
+            }).then(something => this.props.reUp())
             .catch(err => console.log(err.message))
-            this.setState({complete: 3})
-            this.props.create()
         }
         handleChange = (event) => {
             console.log(this.state)
             this.setState({[event.target.id]: event.target.value})
           }
-        deleteMonster = (event) => {
-            event.preventDefault()
-            fetch(`${this.props.baseUrl}/monster/${this.props.monster.id}`,{
-                method: 'DELETE',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'authorization': this.props.token
-                }
-              })
-              .then(res=>res.json())
-              .then(json=> console.log(json))
-              .catch(err => err.message)
-              this.setState({complete:undefined})
-              this.props.delete()
-        }
-        edit = (event) => {
-            event.preventDefault()
-            this.setState({complete:1})
-        }
-        editMonster = () => {
-            if (this.state.complete=== 1) {
-            return (<div><button onClick={this.updateMonster}>Update</button>
-            <button onClick={this.deleteMonster}>Delete</button></div>) }
-            else { return <button onClick={this.edit}>Edit</button>}
-        }
-        updateMonster = (event) => {
-            event.preventDefault()
-            fetch(`${this.props.baseUrl}/monster/${this.props.monster.id}`,{
-                method: 'PUT',
-                body:JSON.stringify(this.state),
-                headers: {
-                  'Content-Type': 'application/json',
-                  'authorization': this.props.token
-                }
-              }).then(res=>res.json())
-              .then(json=>console.log(json))
-              this.setState({complete:2})
-              this.props.reUp()
-        }
-        viewConductor = () => {
-            return  this.state.complete === 1 ? <Enemy monster={this.state}/> : 
-            this.state.complete === 2 ? <Enemy monster={this.props.monster} /> :
-            this.state.complete === 3 ? <div><Enemy monster={this.state}/><h1>Monster Created</h1></div>:
-            <Deleted/>
-        }
+       
     render() {
         return(
             <React.Fragment>
-            {this.viewConductor()}
+ 
             <form className="cardo" onSubmit={this.submitMonster}>
             <h1>Character</h1>
             <label htmlFor="nameOfMonster">Character Name:</label><br/>
@@ -115,7 +69,7 @@ export default class Create extends Component {
             <input onChange={this.handleChange} value={this.state.info} type="text" id="info" /> <br/>
             <button type="submit">Submit Character Data</button>
           </form>
-          {this.editMonster()}
+       
           </React.Fragment>
           
         )
